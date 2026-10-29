@@ -1,31 +1,25 @@
 package leavemgmt;
 
 public class FullTimeEmployee extends Employee {
+    public static final int ANNUAL_LEAVE = 20;
+    public static final int MAX_DAYS_PER_REQUEST = 10;
+
     public FullTimeEmployee(int id, String name, String department) {
-        super(id, name, department, 20);
+        this(id, name, department, ANNUAL_LEAVE);
     }
 
-    @Override
-    public boolean applyLeave(int d) {
-        if (d <= 0) {
-            System.out.println("Invalid number of days");
-            return false;
-        }
-        if (d > 10) {
-            System.out.println("Full-time can take at most 10 days per request");
-            return false;
-        }
-        if (d > leaveBalance) {
-            System.out.println("Not enough leave balance");
-            return false;
-        }
-        leaveBalance = leaveBalance - d;
-        System.out.println(getEmployeeName() + " applied for " + d + " day(s)");
-        return true;
+    // Lets subclasses (e.g. Manager) reuse this class with a different entitlement
+    protected FullTimeEmployee(int id, String name, String department, int annualLeave) {
+        super(id, name, department, annualLeave);
     }
 
     @Override
     public String getEmployeeType() {
         return "Full-time";
+    }
+
+    @Override
+    public int getMaxDaysPerRequest() {
+        return MAX_DAYS_PER_REQUEST;
     }
 }
