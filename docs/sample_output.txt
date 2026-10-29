@@ -1,0 +1,33 @@
+=== Employee details ===
+Full-time  | ID: 1 | Name: Alice  | Dept: HR         | Balance: 20/20 day(s)
+Part-time  | ID: 2 | Name: Bob    | Dept: IT         | Balance: 10/10 day(s)
+Intern     | ID: 3 | Name: Carol  | Dept: Finance    | Balance:  5/5 day(s)
+Manager    | ID: 4 | Name: David  | Dept: Operations | Balance: 30/30 day(s)
+           (includes 10 bonus leave day(s) for managers)
+
+=== Valid leave requests ===
+OK   : Alice applied 5 day(s)
+OK   : Bob applied 3 day(s)
+OK   : Carol applied 2 day(s)
+OK   : David applied 14 day(s)
+
+=== More requests (rules enforced per employee type) ===
+ERROR: Bob - Part-time can take at most 5 day(s) per request
+ERROR: Carol - Intern can take at most 2 day(s) per request
+ERROR: Alice - Number of days must be greater than zero
+OK   : Carol applied 2 day(s)
+ERROR: Carol - Not enough leave balance (available: 1)
+
+=== Cancelling leave ===
+OK   : Alice cancelled 2 day(s)
+ERROR: Alice - Cannot cancel more leave than was taken
+
+=== Final balances ===
+Alice (Full-time): 17 day(s) left
+Bob (Part-time): 7 day(s) left
+Carol (Intern): 1 day(s) left
+David (Manager): 16 day(s) left
+
+=== Alice's leave history ===
+ - Applied 5 day(s) - Family event
+ - Cancelled 2 day(s)

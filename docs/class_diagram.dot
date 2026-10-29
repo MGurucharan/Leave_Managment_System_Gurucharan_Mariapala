@@ -1,0 +1,20 @@
+digraph G {
+  rankdir=BT; fontname="Helvetica";
+  node [shape=record, fontname="Helvetica", fontsize=10, style=filled, fillcolor="#F2F5F9"];
+  edge [fontname="Helvetica", fontsize=9];
+  Employee [fillcolor="#DCE6F2", label="{abstract\nEmployee|- employeeId : int\l- employeeName : String\l- department : String\l- annualLeave : int\l- leaveBalance : int\l- leaveHistory : List\<String\>\l|+ getEmployeeType() : String [abstract]\l+ getMaxDaysPerRequest() : int [abstract]\l+ applyLeave(days : int) : void\l+ applyLeave(days : int, reason : String) : void\l+ cancelLeave(days : int) : void\l+ checkLeaveBalance() : int\l+ displayDetails() : void\l}"];
+  FullTimeEmployee [label="{FullTimeEmployee|+ ANNUAL_LEAVE = 20\l+ MAX_DAYS_PER_REQUEST = 10\l|+ getEmployeeType() : String\l+ getMaxDaysPerRequest() : int\l}"];
+  PartTimeEmployee [label="{PartTimeEmployee|+ ANNUAL_LEAVE = 10\l+ MAX_DAYS_PER_REQUEST = 5\l|+ getEmployeeType() : String\l+ getMaxDaysPerRequest() : int\l}"];
+  Intern [label="{Intern|+ ANNUAL_LEAVE = 5\l+ MAX_DAYS_PER_REQUEST = 2\l|+ getEmployeeType() : String\l+ getMaxDaysPerRequest() : int\l}"];
+  Manager [label="{Manager|+ BONUS_LEAVE = 10\l+ MAX_DAYS_PER_REQUEST = 15\l|+ getEmployeeType() : String\l+ getMaxDaysPerRequest() : int\l+ displayDetails() : void\l}"];
+  LeaveRequestException [fillcolor="#FBEAEA", label="{LeaveRequestException|+ LeaveRequestException(message : String)\l}"];
+  Exc [label="Exception", fillcolor="#FFFFFF"];
+  Main [label="{Main|+ main(args : String[]) : void\l}"];
+  FullTimeEmployee -> Employee [arrowhead=empty];
+  PartTimeEmployee -> Employee [arrowhead=empty];
+  Intern -> Employee [arrowhead=empty];
+  Manager -> FullTimeEmployee [arrowhead=empty];
+  LeaveRequestException -> Exc [arrowhead=empty];
+  Employee -> LeaveRequestException [style=dashed, arrowhead=vee, label="throws"];
+  Main -> Employee [style=dashed, arrowhead=vee, label="uses"];
+}
