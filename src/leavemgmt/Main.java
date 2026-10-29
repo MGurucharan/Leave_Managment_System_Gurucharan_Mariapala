@@ -8,5 +8,10 @@ public class Main {
         e1.displayDetails();
         e2.displayDetails();
         e3.displayDetails();
+        e1.applyLeave(5);
+        e2.applyLeave(12);
+        e3.applyLeave(2);
+        e3.cancelLeave(1);
+        System.out.println("Alice balance: " + e1.checkLeaveBalance());
     }
 }
