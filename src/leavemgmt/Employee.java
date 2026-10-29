@@ -1,10 +1,10 @@
 package leavemgmt;
 
-public class Employee {
+public abstract class Employee {
     private int employeeId;
     private String employeeName;
     private String department;
-    private int leaveBalance;
+    protected int leaveBalance;
 
     public Employee(int employeeId, String employeeName, String department, int leaveBalance) {
         this.employeeId = employeeId;
@@ -46,8 +46,15 @@ public class Employee {
         return leaveBalance;
     }
 
+    public boolean applyLeave(int d, String reason) {
+        System.out.println("Reason: " + reason);
+        return applyLeave(d);
+    }
+
+    public abstract String getEmployeeType();
+
     public void displayDetails() {
-        System.out.println("ID: " + employeeId + ", Name: " + employeeName
+        System.out.println(getEmployeeType() + " - ID: " + employeeId + ", Name: " + employeeName
                 + ", Department: " + department + ", Leave balance: " + leaveBalance);
     }
 }
